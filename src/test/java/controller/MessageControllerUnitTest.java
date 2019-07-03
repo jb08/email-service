@@ -1,8 +1,10 @@
 package controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 import java.util.UUID;
 
@@ -39,30 +41,30 @@ class MessageControllerUnitTest {
     }
 
     @Test
-    void putMessage_newMessage_Created() {
-        Message message = Message.builder()
-                .id(UUID.randomUUID())
+    void postMessage_Created() {
+        Message message = spy(Message.builder()
                 .sender(FAKER.artist().name())
                 .recipient(FAKER.artist().name())
                 .message(FAKER.shakespeare().asYouLikeItQuote())
-                .build();
+                .build());
 
-        when(messageService.putMessage(message)).thenReturn(false);
-        ResponseEntity<Void> response = messageController.putMessage(message.getId(), message);
+        ResponseEntity<Message> response = messageController.postMessage(message);
+
+        verify(message, times(1)).setId(any());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
     void putMessage_updatedMessage_NoContent() {
-        Message message = Message.builder()
+        Message message = spy(Message.builder()
                 .id(UUID.randomUUID())
                 .sender(FAKER.artist().name())
                 .recipient(FAKER.artist().name())
                 .message(FAKER.shakespeare().asYouLikeItQuote())
-                .build();
+                .build());
 
-        when(messageService.putMessage(message)).thenReturn(true);
         ResponseEntity<Void> response = messageController.putMessage(message.getId(), message);
+        verify(message, times(1)).setId(message.getId());
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 }

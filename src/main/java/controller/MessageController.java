@@ -40,21 +40,31 @@ public class MessageController {
         return messageService.getMessage(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    @ApiOperation(value = "Create or update the message with the given id")
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @ApiOperation(value = "Create a message")
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "Successfully updated message"),
-            @ApiResponse(code = 201, message = "Successfully created message")})
+    @ApiResponses(value = {@ApiResponse(code = 201, message = "Successfully created message")})
+    public ResponseEntity<Message> postMessage(@RequestBody @ApiParam(value = "A new message",
+                    required = true) Message message) {
+        message.setId(UUID.randomUUID());
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(messageService.postMessage(message));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @ApiOperation(value = "Update the message with the given id")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "Successfully updated message")})
     public ResponseEntity<Void> putMessage(
             @PathVariable("id")
             @ApiParam(value = "The id of the message", required = true) UUID id,
             @RequestBody @ApiParam(
-                    value = "A new or updated message",
+                    value = "An updated message",
                     required = true) Message message) {
-        boolean messageAlreadyExisted = messageService.putMessage(message);
-        return ResponseEntity.status(
-                messageAlreadyExisted ? HttpStatus.NO_CONTENT : HttpStatus.CREATED).build();
+        message.setId(id);
+        messageService.putMessage(message);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

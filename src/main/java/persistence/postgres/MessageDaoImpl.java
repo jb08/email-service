@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import dto.Message;
+import exception.NotFound;
 import persistence.MessageDao;
 import persistence.postgres.mapper.MessageRowMapper;
 
@@ -44,10 +45,11 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public void create(Message message) {
+    public Message create(Message message) {
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(message);
         String insert = "INSERT INTO MESSAGES VALUES (:id, :sender, :recipient, :message)";
         jdbcOperations.update(insert, namedParameters);
+        return find(message.getId()).orElseThrow(NotFound::new);
     }
 
     @Override

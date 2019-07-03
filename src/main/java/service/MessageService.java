@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dto.Message;
+import exception.BadRequest;
 import exception.NotFound;
 import persistence.MessageDao;
 
@@ -29,18 +30,30 @@ public class MessageService {
     }
 
     /**
-     * Create or update the {@code Message}.
-     * @param message the message to create or update
-     * @return true if message already existed, false otherwise
+     * Create the {@code Message}.
+     * @param message the message to create
      */
-    public boolean putMessage(Message message) {
+    public Message postMessage(Message message) {
         message.validate();
         Optional<Message> optMessage = messageDao.find(message.getId());
         if (optMessage.isPresent()) {
-            messageDao.update(message);
+           throw new BadRequest(String.format("Message already exists with id: %s", message.getId()));
         } else {
-            messageDao.create(message);
+            return messageDao.create(message);
         }
-        return optMessage.isPresent();
+    }
+
+    /**
+     * Update the {@code Message}.
+     * @param message the message to update
+     */
+    public void putMessage(Message message) {
+        message.validate();
+        Optional<Message> optMessage = messageDao.find(message.getId());
+        if (!optMessage.isPresent()) {
+            throw new NotFound();
+        } else {
+            messageDao.update(message);
+        }
     }
 }

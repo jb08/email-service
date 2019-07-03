@@ -12,7 +12,7 @@ public interface MessageDao {
 
     List<Message> getMessages(String participantOne, String participantTwo);
 
-    void create(Message message);
+    Message create(Message message);
 
     void update(Message message);
 }
