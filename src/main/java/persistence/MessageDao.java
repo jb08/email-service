@@ -9,7 +9,10 @@ import dto.Message;
 public interface MessageDao {
 
     Optional<Message> find(UUID id);
+
     List<Message> getMessages(String participantOne, String participantTwo);
+
     void create(Message message);
+
     void update(Message message);
 }

@@ -32,7 +32,11 @@ public class ConversationController {
     @RequestMapping(value = "/findByParticipants/{participants}", method = RequestMethod.GET)
     @ApiOperation(value = "Get all messages with the given participants")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Successfully retrieved messages")})
-    public ResponseEntity<List<Message>> getMessages(@PathVariable("participants") @ApiParam(value = "The comma-separated conversation participants (ie. \"Trump,Putin\", or \"Shelley,Jason\")", required = true) String participants) {
+    public ResponseEntity<List<Message>> getMessages(
+            @PathVariable("participants")
+            @ApiParam(value = "The comma-separated conversation participants" +
+                    "(ie. \"Trump,Putin\", or \"Shelley,Jason\")",
+                    required = true) String participants) {
         List<Message> messages = conversationService.getConversation(participants.split(","));
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }

@@ -1,7 +1,8 @@
 package dto;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 import exception.BadRequest;
@@ -21,7 +22,7 @@ class MessageUnitTest {
                 .message(FAKER.company().catchPhrase())
                 .build();
 
-        Exception e = Assertions.assertThrows(BadRequest.class, () -> message.validate());
-        Assert.assertEquals("Id may not be null", e.getMessage());
+        Exception e = assertThrows(BadRequest.class, message::validate);
+        assertEquals("Id may not be null", e.getMessage());
     }
 }

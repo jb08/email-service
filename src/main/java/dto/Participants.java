@@ -10,7 +10,7 @@ public class Participants {
     private String participantOne;
     private String participantTwo;
 
-    public Participants(String[] participants){
+    public Participants(String[] participants) {
         if (participants.length != 2) {
             throw new BadRequest(
                     String.format("Participants must include exactly two names, this included %s.",

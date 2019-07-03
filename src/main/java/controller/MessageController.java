@@ -34,7 +34,9 @@ public class MessageController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "Get the message with the given id")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Successfully retrieved message")})
-    public Message getMessage(@PathVariable("id") @ApiParam(value = "The id of the message", required = true) UUID id) {
+    public Message getMessage(
+            @PathVariable("id")
+            @ApiParam(value = "The id of the message", required = true) UUID id) {
         return messageService.getMessage(id);
     }
 
@@ -44,10 +46,15 @@ public class MessageController {
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "Successfully updated message"),
             @ApiResponse(code = 201, message = "Successfully created message")})
-    public ResponseEntity<Void> putMessage(@PathVariable("id") @ApiParam(value = "The id of the message", required = true) UUID id,
-                                           @RequestBody @ApiParam(value = "A new or updated message", required = true) Message message) {
+    public ResponseEntity<Void> putMessage(
+            @PathVariable("id")
+            @ApiParam(value = "The id of the message", required = true) UUID id,
+            @RequestBody @ApiParam(
+                    value = "A new or updated message",
+                    required = true) Message message) {
         boolean messageAlreadyExisted = messageService.putMessage(message);
-        return ResponseEntity.status(messageAlreadyExisted ? HttpStatus.NO_CONTENT : HttpStatus.CREATED).build();
+        return ResponseEntity.status(
+                messageAlreadyExisted ? HttpStatus.NO_CONTENT : HttpStatus.CREATED).build();
     }
 
 }

@@ -34,7 +34,7 @@ import com.google.common.base.Predicates;
 public class SwaggerConfig {
 
     @Bean
-    public Docket MessagesApi() {
+    public Docket messagesApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
