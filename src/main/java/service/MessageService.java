@@ -17,6 +17,9 @@ public class MessageService {
     @Autowired
     MessageDao messageDao;
 
+    @Autowired
+    UserService userService;
+
     /**
      * Get the Message with the given id.
      *
@@ -35,6 +38,9 @@ public class MessageService {
      */
     public Message postMessage(Message message) {
         message.validate();
+        userService.findAndValidateUser(message.getSender());
+        userService.findAndValidateUser(message.getRecipient());
+
         Optional<Message> optMessage = messageDao.find(message.getId());
         if (optMessage.isPresent()) {
            throw new BadRequest(String.format("Message already exists with id: %s", message.getId()));
@@ -49,6 +55,9 @@ public class MessageService {
      */
     public void putMessage(Message message) {
         message.validate();
+        userService.findAndValidateUser(message.getSender());
+        userService.findAndValidateUser(message.getRecipient());
+
         Optional<Message> optMessage = messageDao.find(message.getId());
         if (!optMessage.isPresent()) {
             throw new NotFound();

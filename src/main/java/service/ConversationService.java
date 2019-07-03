@@ -15,6 +15,9 @@ public class ConversationService {
     @Autowired
     MessageDao messageDao;
 
+    @Autowired
+    UserService userService;
+
     /**
      * Get the Messages involving the given participants.
      *
@@ -23,7 +26,12 @@ public class ConversationService {
      */
     public List<Message> getConversation(String[] participants) {
         Participants pair = new Participants(participants);
-        return messageDao.getMessages(pair.getParticipantOne(), pair.getParticipantTwo());
+        String participantOne = pair.getParticipantOne();
+        String participantTwo = pair.getParticipantTwo();
+        userService.findAndValidateUser(participantOne);
+        userService.findAndValidateUser(participantTwo);
+
+        return messageDao.getMessages(participantOne, participantTwo);
     }
 
 }
