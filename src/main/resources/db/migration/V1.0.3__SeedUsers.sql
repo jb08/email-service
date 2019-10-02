@@ -1,5 +1,5 @@
 
-INSERT INTO messenger.messenger.users (
+INSERT INTO demo.demo.users (
     name, email
     )
 VALUES ('Jason',

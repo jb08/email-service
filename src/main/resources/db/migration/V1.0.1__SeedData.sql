@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-INSERT INTO messenger.messenger.messages (
+INSERT INTO demo.demo.messages (
     id, sender, recipient, message
     )
 VALUES (uuid_generate_v1(),

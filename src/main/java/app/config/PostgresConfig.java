@@ -12,7 +12,7 @@ public class PostgresConfig {
     @Bean
     public Flyway flyway(DataSource dataSource) {
         FluentConfiguration configuration = Flyway.configure();
-        configuration.schemas("messenger");
+        configuration.schemas("demo");
         configuration.cleanDisabled(true);
         configuration.dataSource(dataSource);
         Flyway flyway = new Flyway(configuration);
@@ -23,7 +23,7 @@ public class PostgresConfig {
     @Bean
     public DataSource dataSource() {
         DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/messenger?currentSchema=messenger");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/demo?currentSchema=demo");
         dataSource.setUsername("user");
         dataSource.setPassword("password");
         dataSource.setDriverClassName("org.postgresql.Driver");

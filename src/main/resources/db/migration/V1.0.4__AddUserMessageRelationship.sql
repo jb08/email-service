@@ -1,6 +1,6 @@
-ALTER TABLE messenger.messages
+ALTER TABLE demo.messages
   ADD CONSTRAINT messages_users_recipient_fk
-FOREIGN KEY (recipient) REFERENCES messenger.users (name);
-ALTER TABLE messenger.messages
+FOREIGN KEY (recipient) REFERENCES demo.users (name);
+ALTER TABLE demo.messages
   ADD CONSTRAINT messages_users_sender_fk
-FOREIGN KEY (sender) REFERENCES messenger.users (name);
+FOREIGN KEY (sender) REFERENCES demo.users (name);

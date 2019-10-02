@@ -41,8 +41,8 @@ public class SwaggerConfig {
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build()
                 .apiInfo(new ApiInfo(
-                        "Messages REST API",
-                        "API for interacting with messages",
+                        "REST API",
+                        "API for demo",
                         null,
                         null,
                         new Contact("Jason Brown", null, null),

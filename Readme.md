@@ -1,9 +1,9 @@
-# Simple Messaging App API
+# Demo App API
 
-A POC of a simple messaging App restful API built using Java (Spring framework).
+A simple restful API built using Java (Spring framework).
 
 Requirements:
-- Java 8
+- Java 11
 - Docker
 
 App Dependencies:
@@ -18,21 +18,6 @@ docker-compose -f local-dev.yml up
 ./gradlew build && java -jar build/libs/gs-spring-boot-0.1.0.jar
 ```
 
+Alternatively, use the IntelliJ run configuration.
+
 Navigate to localhost:8080/swagger-ui.html, and explore there (or in curl or Postman).
-
-![](demo.gif)
-
-### Todo
-
-- User Controller
-- Integration tests
-- Checkstyle during build
-- Metrics/monitoring
-- Explore use of Kafka
-
-
-
-
-
-
-

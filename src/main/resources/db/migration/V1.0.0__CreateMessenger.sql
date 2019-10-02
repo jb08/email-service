@@ -1,4 +1,4 @@
-CREATE TABLE "messenger"."messages" (
+CREATE TABLE "demo"."messages" (
   "id"          UUID PRIMARY KEY,
   "sender"      TEXT NOT NULL,
   "recipient"   TEXT NOT NULL,
@@ -7,5 +7,5 @@ CREATE TABLE "messenger"."messages" (
   "updated_at"  TIMESTAMP DEFAULT current_timestamp
 );
 
-CREATE INDEX idx ON messenger.messages(id);
-CREATE INDEX conversation ON messenger.messages(sender, recipient);
+CREATE INDEX idx ON demo.messages(id);
+CREATE INDEX conversation ON demo.messages(sender, recipient);
