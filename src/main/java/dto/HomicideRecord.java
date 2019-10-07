@@ -1,13 +1,10 @@
 package dto;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 
-import exception.BadRequest;
 import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.Data;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data

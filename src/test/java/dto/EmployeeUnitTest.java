@@ -20,7 +20,7 @@ class EmployeeUnitTest {
         employee.validate();
 
         employee.setSalaried(false);
-        Exception e = assertThrows(BadRequest.class, ()-> employee.validate());
+        Exception e = assertThrows(BadRequest.class, () -> employee.validate());
         assertEquals("Non-salaried employees may not have salaries.", e.getMessage());
     }
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dto.Employee;
 import dto.HomicideRecord;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

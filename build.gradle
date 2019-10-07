@@ -46,14 +46,19 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.646'
     compileOnly('org.projectlombok:lombok:1.18.8')
     annotationProcessor('org.projectlombok:lombok:1.18.8')
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
     compile("io.springfox:springfox-swagger2:2.9.2")
     compile('org.postgresql:postgresql')
     compile 'io.springfox:springfox-swagger-ui:2.9.2'
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
     compile('com.google.guava:guava:28.0-jre')
     compile(group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '9.0.21')
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.10'
     compile(group: 'org.flywaydb', name: 'flyway-core', version: '5.2.4')
     compile(group: 'org.springframework', name: 'spring-jdbc', version: '5.1.8.RELEASE')
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: '2.9.10'

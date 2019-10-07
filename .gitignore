@@ -1,3 +1,8 @@
-.idea
 /build
 .gradle/
+
+# IntelliJ
+.idea/*
+!.idea/runConfigurations/
+
+credentials.env
